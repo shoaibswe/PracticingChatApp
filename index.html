@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <div class="w3-container w3-teal">
-            <h1>Welcome to ChapApp1</h1>
+            <h1>Welcome to ChatApp1</h1>
         </div>
         <div class="w3-panel">
             <ul id="msglist" class="w3-ul">
@@ -26,13 +26,15 @@
     </div>
 
     <script>
-        var message = document.getElementById('msglist');
+        var message = document.getElementById('msglist'); //list er id call korsi
         function sent() {
-            var messaged = document.getElementById('msg');
+            var messaged = document.getElementById('msg'); //input theke message nisse
             message.innerHTML += '<li class="w3-round-xlarge w3-indigo w3-panel w3-margin-top"> ' + messaged.value + ' </li>';
-            messaged.value = '';
+            //list a new ta add korse
+            messaged.value = ''; //message box faka korse
         }
     </script>
 
 </body>
+
 </html>
