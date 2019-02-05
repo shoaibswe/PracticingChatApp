@@ -19,15 +19,18 @@
                 <li class="w3-round-xlarge w3-indigo w3-panel w3-margin-top">Start Messaging here..</li>
             </ul>
         </div>
-        <p class="w3-panel">
-            <input id="msg" class="w3-input w3-hover-red  w3-round-xlarge w3-padding" type="text" placeholder="Write youre message here...">
-            <input type="button" value="Send" class="w3-btn w3-round-xlarge w3-indigo" onclick="sent()">
-        </p>
+        <form onsubmit="sent(event)">
+            <p class="w3-panel">
+                <input id="msg" class="w3-input w3-hover-red  w3-round-xlarge w3-padding" type="text" placeholder="Write youre message here...">
+                <input type="button" value="Send" class="w3-btn w3-round-xlarge w3-indigo" onclick="sent(event)">
+            </p>
     </div>
-
+    </form>
     <script>
-        var message = document.getElementById('msglist'); //list er id call korsi
-        function sent() {
+        function sent(e) {
+            var message = document.getElementById('msglist'); //list er id call korsi
+
+            e.preventDefault();
             var messaged = document.getElementById('msg'); //input theke message nisse
             message.innerHTML += '<li class="w3-round-xlarge w3-indigo w3-panel w3-margin-top"> ' + messaged.value + ' </li>';
             //list a new ta add korse
