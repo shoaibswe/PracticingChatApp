@@ -29,12 +29,12 @@
     <!-- added angular to work inside body -->
     <div class="container">
         <div class="w3-container w3-teal">
-            <h1>Welcome to ChatApp1</h1>
+            <h1>Welcome to MyChatApp</h1>
         </div>
         <div class="w3-panel">
-            <p>{{"Made by " + Name}}</p>
+            <p>{{"Practicing by " + Name}}</p>
             <ul id="msglist" class="w3-ul">
-                <li class="w3-round-xlarge w3-indigo w3-panel w3-margin-top">Start Messaging here..</li>
+                <li class="w3-round-xlarge w3-green w3-panel w3-margin-top">Start Messaging here..</li>
                 <li ng-repeat="n in Names" class=" w3-round-xlarge w3-indigo w3-panel w3-margin-top">{{n.$value}}</li>
             </ul>
         </div>
@@ -51,8 +51,7 @@
         var app = angular.module('myApp', ['firebase']);           //added to angular controller
         app.controller('myCtrl', function ($scope, $firebaseArray) {
             $scope.Name = 'Shoaib';
-            $scope.Names = $firebaseArray( db.child('messages'));
-
+            $scope.Names = $firebaseArray( db.child('messagesbrach'));
         });
 
         var message = document.getElementById('msglist'); //list er id call korsi
@@ -60,8 +59,8 @@
         function sent(e) {
             e.preventDefault();
             var messaged = document.getElementById('msg'); //input theke message nisse
-            db.child('messages').push(messaged.value);
-            message.innerHTML += '<li class="w3-round-xlarge w3-indigo w3-panel w3-margin-top"> ' + messaged.value + ' </li>'; //list a new ta add korse
+            db.child('messagesbrach').push(messaged.value);
+           // message.innerHTML += '<li class="w3-round-xlarge w3-indigo w3-panel w3-margin-top"> ' + messaged.value + ' </li>'; //list a new ta add korse
             messaged.value = ''; //message box faka korse
         }
     </script>
