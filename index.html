@@ -59,7 +59,7 @@
         function sent(e) {
             e.preventDefault();
             var messaged = document.getElementById('msg'); //input theke message nisse
-            db.child('mymessanger').push(message.value);
+            db.child('mymessanger').push(messaged.value);
             message.innerHTML += '<li class="w3-round-xlarge w3-indigo w3-panel w3-margin-top"> ' + messaged.value + ' </li>'; //list a new ta add korse
             messaged.value = ''; //message box faka korse
         }
