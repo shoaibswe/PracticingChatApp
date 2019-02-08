@@ -22,6 +22,7 @@
         };
         firebase.initializeApp(config);
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularFire/2.3.0/angularfire.js"></script>
 </head>
 
 <body ng-app="myApp" ng-controller="myCtrl">
@@ -34,7 +35,7 @@
             <p>{{"Made by " + Name}}</p>
             <ul id="msglist" class="w3-ul">
                 <li class="w3-round-xlarge w3-indigo w3-panel w3-margin-top">Start Messaging here..</li>
-                <li ng-repeat="n in Names" class=" w3-round-xlarge w3-indigo w3-panel w3-margin-top">{{n}}</li>
+                <li ng-repeat="n in Names" class=" w3-round-xlarge w3-indigo w3-panel w3-margin-top">{{n.$value}}</li>
             </ul>
         </div>
         <form onsubmit="sent(event)">
@@ -47,10 +48,10 @@
     </form>
     <script>
         var db = firebase.database().ref();
-        var app = angular.module('myApp', []);           //added to angular controller
-        app.controller('myCtrl', function ($scope) {
+        var app = angular.module('myApp', ['firebase']);           //added to angular controller
+        app.controller('myCtrl', function ($scope, $firebaseArray) {
             $scope.Name = 'Shoaib';
-            $scope.Names = ["R", "A", "H", "M"];
+            $scope.Names = $firebaseArray( db.child('messages'));
 
         });
 
@@ -59,7 +60,7 @@
         function sent(e) {
             e.preventDefault();
             var messaged = document.getElementById('msg'); //input theke message nisse
-            db.child('mymessanger').push(messaged.value);
+            db.child('messages').push(messaged.value);
             message.innerHTML += '<li class="w3-round-xlarge w3-indigo w3-panel w3-margin-top"> ' + messaged.value + ' </li>'; //list a new ta add korse
             messaged.value = ''; //message box faka korse
         }
